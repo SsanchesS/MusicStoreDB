@@ -1,0 +1,197 @@
+Запрос:
+GET /albums/21
+Ответ:
+{
+  "album": 21,
+  "title": "Greatest Hits",
+  "artist": "The Beatles",
+  "release_date": "1970-11-10",
+  "genre": "Rock"
+}
+Описание:
+Получить информацию о альбоме по его id
+
+Запрос:
+GET /albums
+Описание:
+возвращает список всех альбомов
+
+Запрос:
+POST /albums
+{
+  "title": "New Album",
+  "artist_id": 15,
+  "release_date": "2023-09-15",
+  "genre_id": 8
+}
+Описание:
+создать новый альбом
+
+Запрос:
+PUT /albums/21
+{
+  "title": "Updated Album Title",
+  "release_date": "2023-10-01"
+}
+Описание:
+обновить информацию о существующем альбоме
+
+Запрос:
+DELETE /albums/21
+Описание:
+удаляет альбом с указанным id
+
+*** C Остальными все тоже самое! ***
+
+Исполнители (Artists):
+
+Получение списка всех исполнителей:
+GET /artists
+
+Получение информации о конкретном исполнителе:
+GET /artists/{artist_id}
+
+Создание нового исполнителя:
+POST /artists
+
+Редактирование информации об исполнителе:
+PUT /artists/{artist_id}
+
+Удаление исполнителя:
+DELETE /artists/{artist_id}
+
+Жанры (Genres):
+
+Получение списка всех жанров:
+GET /genres
+
+Получение информации о конкретном жанре:
+GET /genres/{genre_id}
+
+Создание нового жанра:
+POST /genres
+
+Редактирование информации о жанре:
+PUT /genres/{genre_id}
+
+Удаление жанра:
+DELETE /genres/{genre_id}
+
+Песни (Songs):
+
+Получение списка всех песен:
+GET /songs
+
+Получение информации о конкретной песне:
+GET /songs/{song_id}
+
+Создание новой песни:
+POST /songs
+
+Редактирование информации о песне:
+PUT /songs/{song_id}
+
+Удаление песни:
+DELETE /songs/{song_id}
+
+Клиенты (Customers):
+
+Получение списка всех клиентов:
+GET /customers
+
+Получение информации о конкретном клиенте:
+GET /customers/{customer_id}
+
+Создание нового клиента:
+POST /customers
+
+Редактирование информации о клиенте:
+PUT /customers/{customer_id}
+
+Удаление клиента:
+DELETE /customers/{customer_id}
+
+Заказы (Orders):
+
+Получение списка всех заказов:
+GET /orders
+
+Получение информации о конкретном заказе:
+GET /orders/{order_id}
+
+Создание нового заказа:
+POST /orders
+
+Редактирование информации о заказе:
+PUT /orders/{order_id}
+
+Удаление заказа:
+DELETE /orders/{order_id}
+
+Детали заказа (OrderDetails):
+
+Получение списка всех деталей заказа:
+GET /OrderDetails
+
+Получение информации о конкретной детали заказа:
+GET /OrderDetails/{order_detail_id}
+
+Создание новой детали заказа:
+POST /OrderDetails
+
+Редактирование информации о детали заказа:
+PUT /OrderDetails/{order_detail_id}
+
+Удаление детали заказа:
+DELETE /OrderDetails/{order_detail_id}
+
+Сотрудники (Employees):
+
+Получение списка всех сотрудников:
+GET /employees
+
+Получение информации о конкретном сотруднике:
+GET /employees/{employee_id}
+
+Создание нового сотрудника:
+POST /employees
+
+Редактирование информации о сотруднике:
+PUT /employees/{employee_id}
+
+Удаление сотрудника:
+DELETE /employees/{employee_id}
+
+Издательства (Publishers):
+
+Получение списка всех издательств:
+GET /publishers
+
+Получение информации о конкретном издательстве:
+GET /publishers/{publisher_id}
+
+Создание нового издательства:
+POST /publishers
+
+Редактирование информации об издательстве:
+PUT /publishers/{publisher_id}
+
+Удаление издательства:
+DELETE /publishers/{publisher_id}
+
+Авторские права (Copyrights):
+
+Получение списка всех записей об авторских правах:
+GET /copyrights
+
+Получение информации о конкретной записи об авторских правах:
+GET /copyrights/{copyright_id}
+
+Создание новой записи об авторских правах:
+POST /copyrights
+
+Редактирование информации о записи об авторских правах:
+PUT /copyrights/{copyright_id}
+
+Удаление записи об авторских правах:
+DELETE /copyrights/{copyright_id}
