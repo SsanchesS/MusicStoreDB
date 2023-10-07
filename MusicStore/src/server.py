@@ -33,16 +33,16 @@ app = FastAPI()
 def main_page():
     return {'page': 'Connection in correct'}
     
-app.include_router(Albums_router, prefix='/Albums')
-app.include_router(Copyrights_router, prefix='/Copyrights')
-app.include_router(Artists_router, prefix='/Artists')
-app.include_router(Genres_router, prefix='/Genres')
-app.include_router(Songs_router, prefix='/Songs')
-app.include_router(Customers_router, prefix='/Customers')
-app.include_router(Orders_router, prefix='/Orders')
-app.include_router(OrderDetails_router, prefix='/OrderDetails')
-app.include_router(Employees_router, prefix='/Employees') 
-app.include_router(Publishers_router, prefix='/Publishers') 
+app.include_router(Albums_router, prefix='/albums')
+app.include_router(Copyrights_router, prefix='/copyrights')
+app.include_router(Artists_router, prefix='/artists')
+app.include_router(Genres_router, prefix='/genres')
+app.include_router(Songs_router, prefix='/songs')
+app.include_router(Customers_router, prefix='/customers')
+app.include_router(Orders_router, prefix='/orders')
+app.include_router(OrderDetails_router, prefix='/orderDetails')
+app.include_router(Employees_router, prefix='/employees') 
+app.include_router(Publishers_router, prefix='/publishers') 
 
 app.include_router(login_router, prefix='/login')
 
