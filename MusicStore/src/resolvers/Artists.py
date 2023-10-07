@@ -1,21 +1,26 @@
 from sql_base.base import base_worker
 from sql_base.models import ArtistsM
 
-def get_Artist(Artist_id) -> int:
-    get_Artist1 = base_worker.insert_data(f"SELECT * FROM Artist WHERE id = {Artist_id}",())
-    return get_Artist1
+def get_Artist(artist_id) -> int:
+    get_artist = base_worker.insert_data(f"SELECT * FROM Artists WHERE artist_id = {artist_id}",())
+    return get_artist
 
-def new_Artist(Artist: ArtistsM) -> int:
-    new_id = base_worker.insert_data(f"""INSERT INTO Artist (title, short_name) 
-                                    VALUES(?,?) RETURNING id;""",
-                                    (Artist.title, Artist.short_name))
+def new_Artist(artist: ArtistsM) -> int:
+    new_id = base_worker.insert_data(f"""
+        INSERT INTO Artists (name, country, active_years) 
+        VALUES (?, ?, ?) RETURNING artist_id;
+    """, (artist.name, artist.country, artist.active_years))
     return new_id
-# 
-def upd_Artist(Artist_id,Artist: ArtistsM) -> int:
-    upd_id = base_worker.insert_data(f"""UPDATE Artist SET title=(?), short_name=(?) WHERE id = {Artist_id} RETURNING id;""",
-                                     (Artist.title, Artist.short_name))
+
+def upd_Artist(artist_id, artist: ArtistsM) -> int:
+    upd_id = base_worker.insert_data(f"""
+        UPDATE Artists 
+        SET name = ?, country = ?, active_years = ?
+        WHERE artist_id = {artist_id} 
+        RETURNING artist_id;
+    """, (artist.name, artist.country, artist.active_years))
     return upd_id
 
-def del_Artist(Artist_id) -> int:
-    del_id = base_worker.insert_data(f"DELETE FROM Artist WHERE id = {Artist_id} RETURNING id;",())
+def del_Artist(artist_id) -> int:
+    del_id = base_worker.insert_data(f"DELETE FROM Artists WHERE artist_id = {artist_id} RETURNING artist_id;",())
     return del_id

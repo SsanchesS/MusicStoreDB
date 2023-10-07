@@ -37,7 +37,7 @@ CREATE TABLE Orders(
   order_id INTEGER PRIMARY KEY,
   customer_id INTEGER,
   order_date DATE,
-  total_amount REAL,
+  total_amount FLOAT,
   FOREIGN KEY (customer_id) REFERENCES Customers (customer_id)
 ); 
 CREATE TABLE OrderDetails(
@@ -45,7 +45,7 @@ CREATE TABLE OrderDetails(
   order_id INTEGER,
   song_id INTEGER,
   quantity INTEGER,
-  price REAL,
+  price FLOAT,
   FOREIGN KEY (order_id) REFERENCES Orders (order_id),
   FOREIGN KEY (song_id) REFERENCES Songs (song_id)
 )
@@ -65,7 +65,7 @@ CREATE TABLE Copyrights(
   copyright_id INTEGER PRIMARY KEY,
   song_id INTEGER,
   publisher_id INTEGER,
-  royalty_rate REAL,
+  royalty_rate FLOAT,
   FOREIGN KEY (song_id) REFERENCES Songs (song_id),
   FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id)
 )

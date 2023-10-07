@@ -1,29 +1,31 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from sql_base.models import CopyrightsM
 import resolvers.Copyrights
 
 Copyrights_router = APIRouter()
 
-@Copyrights_router.get('/')
-def get_Copyrights():
-    return f'Response: {{text: Страница со списком Copyright}}'
-
-@Copyrights_router.get('/{transaction_code}')
-def get_Copyright(transaction_code: int):
-    get_Copyright1 = resolvers.Copyrights.get_Copyright(transaction_code)
-    return f'Copyright: {get_Copyright1}'
+@Copyrights_router.get('/{copyright_id}')
+def get_Copyright(copyright_id: int):
+    copyright = resolvers.Copyrights.get_Copyright(copyright_id)
+    if copyright is None:
+        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
+    return {"Copyright": copyright}
 
 @Copyrights_router.post('/')
-def new_Copyright(Copyright: CopyrightsM):
-    new_transaction_code = resolvers.Copyrights.new_Copyright(Copyright)
-    return f'{{code: 201, id: {new_transaction_code}}}'
+def new_Copyright(copyright: CopyrightsM):
+    new_id = resolvers.Copyrights.new_Copyright(copyright)
+    return {"code": 201, "id": new_id}
 
-@Copyrights_router.put('/{transaction_code}')
-def update_Copyright(transaction_code:int,Copyright: CopyrightsM):
-    upd_transaction_code = resolvers.Copyrights.upd_Copyright(transaction_code,Copyright)
-    return f'Update Copyright {upd_transaction_code}'
+@Copyrights_router.put('/{copyright_id}')
+def update_Copyright(copyright_id: int, copyright: CopyrightsM):
+    upd_id = resolvers.Copyrights.upd_Copyright(copyright_id, copyright)
+    if upd_id is None:
+        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
+    return {"Update Copyright": upd_id}
 
-@Copyrights_router.delete('/{transaction_code}')
-def delete_Copyright(transaction_code: int):
-    del_transaction_code = resolvers.Copyrights.del_Copyright(transaction_code)
-    return f'Delete Copyright {del_transaction_code}'
+@Copyrights_router.delete('/{copyright_id}')
+def delete_Copyright(copyright_id: int):
+    del_id = resolvers.Copyrights.del_Copyright(copyright_id)
+    if del_id is None:
+        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
+    return {"Delete Copyright": del_id}

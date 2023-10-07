@@ -1,60 +1,65 @@
 from typing import Optional
 from pydantic import BaseModel
+from datetime import date
 
 class AlbumsM(BaseModel):
-    # id: Optional[int]
-    username: str
-    password: str
-    card: Optional[str]
+    # album_id: int
+    title: str
+    artist_id: int
+    release_date: date
+    genre_id: int
 
 class ArtistsM(BaseModel):
-    # id: Optional[int]
-    title: str
-    short_name: str
+    # artist_id: int
+    name: str
+    country: str
+    active_years: str
 
 class GenresM(BaseModel):
-    # id: Optional[int]
-    product_type: str
-    note: Optional[str]
+    # genre_id: int
+    name: str
 
 class SongsM(BaseModel):
-    # id: Optional[int]
-    left_in_stock: int
-    note: Optional[str]
+    # song_id: int
+    title: str
+    album_id: int
+    artist_id: int
+    duration: str
 
 class CustomersM(BaseModel):
-    # id: Optional[int]
-    user_id: int
+    # customer_id: int
+    first_name: int
+    last_name: int
+    email: int
+    phone_number: int 
 
 class OrdersM(BaseModel):
-    # transaction_code: Optional[int]
-    online_magazine_id: int
-    user_id: int
-    product_id: int
-    manager_id: int
-    date_and_time_of_receipt: str
-    title: Optional[str]
+    # order_id: int
+    customer_id: int
+    order_date: date
+    total_amount: float
 
 class OrderDetailsM(BaseModel):
-    # id: Optional[int]
-    username: str
-    password: str
-    card: Optional[str]
+    # order_detail_id: int
+    order_id: int
+    song_id: int
+    quantity: int
+    price: float
 
 class EmployeesM(BaseModel):
-    # id: Optional[int]
-    username: str
-    password: str
-    card: Optional[str]
+    # employee_id: int
+    first_name: str
+    last_name: str
+    hire_date: date
+    position: str
 
 class PublishersM(BaseModel):
-    # id: Optional[int]
-    username: str
-    password: str
-    card: Optional[str]
+    # publisher_id: int
+    name: str
+    country: str
 
 class CopyrightsM(BaseModel):
-    # id: Optional[int]
-    username: str
-    password: str
-    card: Optional[str]
+    # copyright_id: int
+    song_id: int
+    publisher_id: int
+    royalty_rate: float
