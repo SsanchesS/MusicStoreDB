@@ -11,7 +11,6 @@ class BaseWorker:
         return os.path.exists(self.base_path)
 
     def create_base(self, sql_file: str) -> None:
-        print("БД не существует")
         print("Наполняем БД...")
         connection = sqlite3.connect(self.base_path)
         cur = connection.cursor()
@@ -21,8 +20,9 @@ class BaseWorker:
             try:
                 cur.executescript(scripts)
                 connection.commit()
+                print("БД создано")
             except sqlite3.Error as error:
-                print(error)
+                print(f"ОШИБКА!!!!!!! {error}")
             finally:
                 connection.close()
 

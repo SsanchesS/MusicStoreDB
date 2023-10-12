@@ -7,14 +7,14 @@ font = ('Arial Bold', 16)
 
 root = Tk()
 root.title("My GUI")  
-root.geometry('800x600')
+root.geometry('700x400')
 
 email = StringVar()
 phone_number = StringVar()
 
 def check_login(email: str, phone_number: str):
     data = {"email": email, "phone_number": phone_number}
-    r = requests.post('http://127.0.0.1:8000/login/log', json=data)
+    r = requests.post('http://127.0.0.1:8000/login', json=data) # r = requests.post('http://127.0.0.1:8000/login', data=data)
     answer = r.json()
     print(answer)
     code = answer["code"]
@@ -23,15 +23,15 @@ def check_login(email: str, phone_number: str):
         print(f"Server error:{message}")
         return None
     else:
-        return answer["id"][0]
+        return answer["customer_id"][0]
 
 def open_login():
-    user_id = check_login(email=email.get(),phone_number=phone_number.get())
-    if user_id:
+    customer_id = check_login(email=email.get(),phone_number=phone_number.get())
+    if customer_id:
         print("Login ok")
-        print(user_id)
+        print(f'customer_id: {customer_id}')
         root.withdraw()
-        create_app(root,font)
+        create_app(root,font,customer_id_props=customer_id)
     else:
         mesbox.showerror(title="Wrong login",message="Логин или пароль не верны")
 

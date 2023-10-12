@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sql_base.models import EmployeesM
 import resolvers.Employees
 
@@ -8,8 +8,8 @@ Employees_router = APIRouter()
 def get_Employee(employee_id: int):
     employee = resolvers.Employees.get_Employee(employee_id)
     if employee is None:
-        raise HTTPException(status_code=404, detail=f"Employee with id {employee_id} not found")
-    return {"Employee": employee}
+        return {"code": 404, 'message': f"Employee with id {employee_id} not found"}
+    return {"code": 201, "Employee": employee}
 
 @Employees_router.post('/')
 def new_Employee(employee: EmployeesM):
@@ -20,12 +20,12 @@ def new_Employee(employee: EmployeesM):
 def update_Employee(employee_id: int, employee: EmployeesM):
     upd_id = resolvers.Employees.upd_Employee(employee_id, employee)
     if upd_id is None:
-        raise HTTPException(status_code=404, detail=f"Employee with id {employee_id} not found")
-    return {"Update Employee": upd_id}
+       return {"code": 404, 'message': f"Employee with id {employee_id} not found"}
+    return {"code": 201, "Update Employee": upd_id}
 
 @Employees_router.delete('/{employee_id}')
 def delete_Employee(employee_id: int):
     del_id = resolvers.Employees.del_Employee(employee_id)
     if del_id is None:
-        raise HTTPException(status_code=404, detail=f"Employee with id {employee_id} not found")
-    return {"Delete Employee": del_id}
+       return {"code": 404, 'message': f"Employee with id {employee_id} not found"}
+    return {"code": 201, "Delete Employee": del_id}

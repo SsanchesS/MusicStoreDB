@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sql_base.models import AlbumsM
 import resolvers.Albums
 
@@ -8,8 +8,8 @@ Albums_router = APIRouter()
 def get_Album(album_id: int):
     album = resolvers.Albums.get_Album(album_id)
     if album is None:
-        raise HTTPException(status_code=404, detail=f"Album with id {album_id} not found")
-    return {"Album": album}
+        return {"code": 404, 'message': f"Album with id {album_id} not found"}
+    return {"code": 201, "Album": album}
 
 @Albums_router.post('/')
 def new_Album(album: AlbumsM):
@@ -20,12 +20,12 @@ def new_Album(album: AlbumsM):
 def update_Album(album_id: int, album: AlbumsM):
     upd_id = resolvers.Albums.upd_Album(album_id, album)
     if upd_id is None:
-        raise HTTPException(status_code=404, detail=f"Album with id {album_id} not found")
-    return {"Update Album": upd_id}
+        return {"code": 404, 'message': f"Album with id {album_id} not found"}
+    return {"code": 201, "Update Album": upd_id}
 
 @Albums_router.delete('/{album_id}')
 def delete_Album(album_id: int):
     del_id = resolvers.Albums.del_Album(album_id)
     if del_id is None:
-        raise HTTPException(status_code=404, detail=f"Album with id {album_id} not found")
-    return {"Delete Album": del_id}
+        return {"code": 404, 'message': f"Album with id {album_id} not found"}
+    return {"code": 201, "Delete Album": del_id}

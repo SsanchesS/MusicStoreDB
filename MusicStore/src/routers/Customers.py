@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sql_base.models import CustomersM
 import resolvers.Customers
 
@@ -8,8 +8,8 @@ Customers_router = APIRouter()
 def get_Customer(customer_id: int):
     customer = resolvers.Customers.get_Customer(customer_id)
     if customer is None:
-        raise HTTPException(status_code=404, detail=f"Customer with id {customer_id} not found")
-    return {"Customer": customer}
+        return {"code": 404, 'message': f"Customer with id {customer_id} not found"}
+    return {"code": 201, 'Customer': customer}
 
 @Customers_router.post('/')
 def new_Customer(customer: CustomersM):
@@ -20,12 +20,12 @@ def new_Customer(customer: CustomersM):
 def update_Customer(customer_id: int, customer: CustomersM):
     upd_id = resolvers.Customers.upd_Customer(customer_id, customer)
     if upd_id is None:
-        raise HTTPException(status_code=404, detail=f"Customer with id {customer_id} not found")
-    return {"Update Customer": upd_id}
+        return {"code": 404, 'message': f"Customer with id {customer_id} not found"}
+    return {"code": 201, "Update Customer": upd_id}
 
 @Customers_router.delete('/{customer_id}')
 def delete_Customer(customer_id: int):
     del_id = resolvers.Customers.del_Customer(customer_id)
     if del_id is None:
-        raise HTTPException(status_code=404, detail=f"Customer with id {customer_id} not found")
-    return {"Delete Customer": del_id}
+        return {"code": 404, 'message': f"Customer with id {customer_id} not found"}
+    return {"code": 201, "Delete Customer": del_id}

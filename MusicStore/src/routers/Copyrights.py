@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sql_base.models import CopyrightsM
 import resolvers.Copyrights
 
@@ -8,8 +8,8 @@ Copyrights_router = APIRouter()
 def get_Copyright(copyright_id: int):
     copyright = resolvers.Copyrights.get_Copyright(copyright_id)
     if copyright is None:
-        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
-    return {"Copyright": copyright}
+        return {"code": 404, 'message': f"Copyright with id {copyright_id} not found"}
+    return {"code": 201, "Copyright": copyright}
 
 @Copyrights_router.post('/')
 def new_Copyright(copyright: CopyrightsM):
@@ -20,12 +20,12 @@ def new_Copyright(copyright: CopyrightsM):
 def update_Copyright(copyright_id: int, copyright: CopyrightsM):
     upd_id = resolvers.Copyrights.upd_Copyright(copyright_id, copyright)
     if upd_id is None:
-        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
-    return {"Update Copyright": upd_id}
+        return {"code": 404, 'message': f"Copyright with id {copyright_id} not found"}
+    return {"code": 201, "Update Copyright": upd_id}
 
 @Copyrights_router.delete('/{copyright_id}')
 def delete_Copyright(copyright_id: int):
     del_id = resolvers.Copyrights.del_Copyright(copyright_id)
     if del_id is None:
-        raise HTTPException(status_code=404, detail=f"Copyright with id {copyright_id} not found")
-    return {"Delete Copyright": del_id}
+        return {"code": 404, 'message': f"Copyright with id {copyright_id} not found"}
+    return {"code": 201, "Delete Copyright": del_id}

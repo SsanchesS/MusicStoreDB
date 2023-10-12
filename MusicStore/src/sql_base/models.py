@@ -28,10 +28,16 @@ class SongsM(BaseModel):
 
 class CustomersM(BaseModel):
     # customer_id: int
-    first_name: int
-    last_name: int
-    email: int
-    phone_number: int 
+    # first_name: Optional[str]
+    # last_name: Optional[str]
+    first_name: str
+    last_name: str
+    email: str
+    phone_number: str
+
+class LoginM(BaseModel):
+    email: str
+    phone_number: str 
 
 class OrdersM(BaseModel):
     # order_id: int

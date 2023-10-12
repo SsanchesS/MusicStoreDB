@@ -48,19 +48,19 @@ CREATE TABLE OrderDetails(
   price FLOAT,
   FOREIGN KEY (order_id) REFERENCES Orders (order_id),
   FOREIGN KEY (song_id) REFERENCES Songs (song_id)
-)
+);
 CREATE TABLE Employees(
   employee_id INTEGER PRIMARY KEY,
   first_name TEXT,
   last_name TEXT,
   hire_date DATE,
   position TEXT
-)
+);
 CREATE TABLE Publishers(
   publisher_id INTEGER PRIMARY KEY,
   name TEXT,
   country TEXT
-)
+);
 CREATE TABLE Copyrights(
   copyright_id INTEGER PRIMARY KEY,
   song_id INTEGER,
@@ -68,7 +68,9 @@ CREATE TABLE Copyrights(
   royalty_rate FLOAT,
   FOREIGN KEY (song_id) REFERENCES Songs (song_id),
   FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id)
-)
+);
+
+INSERT INTO Customers (first_name, last_name, email, phone_number) VALUES ('admin', 'admin', 'admin', 'admin');
 
 -- INSERT INTO Albums (title, artist_id, release_date, genre_id) VALUES ('Road', 1, '1969-09-26', 1);
 -- INSERT INTO Albums (title, artist_id, release_date, genre_id) VALUES ('Thriller', 2, '1982-11-30', 2);

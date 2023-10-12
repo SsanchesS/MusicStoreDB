@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sql_base.models import OrdersM
 import resolvers.Orders
 
@@ -8,8 +8,8 @@ Orders_router = APIRouter()
 def get_Order(order_id: int):
     order = resolvers.Orders.get_Order(order_id)
     if order is None:
-        raise HTTPException(status_code=404, detail=f"Order with id {order_id} not found")
-    return {"Order": order}
+        return {"code": 404, 'message': f"Order with id {order_id} not found"}
+    return {"code": 201, "Order": order}
 
 @Orders_router.post('/')
 def new_Order(order: OrdersM):
@@ -20,12 +20,12 @@ def new_Order(order: OrdersM):
 def update_Order(order_id: int, order: OrdersM):
     upd_id = resolvers.Orders.upd_Order(order_id, order)
     if upd_id is None:
-        raise HTTPException(status_code=404, detail=f"Order with id {order_id} not found")
-    return {"Update Order": upd_id}
+        return {"code": 404, 'message': f"Order with id {order_id} not found"}
+    return {"code": 201, "Update Order": upd_id}
 
 @Orders_router.delete('/{order_id}')
 def delete_Order(order_id: int):
     del_id = resolvers.Orders.del_Order(order_id)
     if del_id is None:
-        raise HTTPException(status_code=404, detail=f"Order with id {order_id} not found")
-    return {"Delete Order": del_id}
+        return {"code": 404, 'message': f"Order with id {order_id} not found"}
+    return {"code": 201, "Delete Order": del_id}

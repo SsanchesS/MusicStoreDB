@@ -22,6 +22,7 @@ BASE_PATH = 'MusicStore.db'
 base_worker.set_base_path(BASE_PATH)
 
 if not base_worker.check_base():
+    print("БД не существует")
     base_worker.create_base('../sql/base.sql')
 else:
     print("БД существует")
