@@ -1,6 +1,6 @@
 from tkinter import *
-from  api.albums_api import create_albums_app
-from  api.artists_api import create_artists_app
+from  api.albums_api import create_album_app
+from  api.artists_api import create_artist_app
 from  api.genres_api import create_genres_app
 from  api.songs_api import create_songs_app
 from  api.customer_api import create_customer_app
@@ -17,11 +17,11 @@ def create_app(root,font,customer_id_props):
 
   def create_app_albums():
     app.withdraw()
-    create_albums_app(root,font)
+    create_album_app(root,font)
   
   def create_app_artists():
     app.withdraw()
-    create_artists_app(root,font)
+    create_artist_app(root,font)
 
   def create_app_genres():
     app.withdraw()

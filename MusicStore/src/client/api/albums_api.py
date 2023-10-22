@@ -1,7 +1,7 @@
 import requests
 from tkinter import *
 
-def create_albums_app(root,font):
+def create_album_app(root,font):
    customer_app = Toplevel(root)
    customer_app.title("Работа с Albums")  
    customer_app.geometry('800x1200')

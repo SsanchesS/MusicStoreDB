@@ -1,131 +1,120 @@
 import requests
 from tkinter import *
 
-def create_artists_app(root,font):
-   customer_app = Toplevel(root)
-   customer_app.title("Работа с Customers")  
-   customer_app.geometry('800x600')
+def create_artist_app(root,font):
+   artist_app = Toplevel(root)
+   artist_app.title("Работа с artists")  
+   artist_app.geometry('1400x700')
 
 
    get_id = StringVar()
    upd_id = StringVar()
    del_id = StringVar()
 
-   new_customer_first_name = StringVar()
-   upd_customer_first_name = StringVar()
+   new_artist_name = StringVar()
+   upd_artist_name = StringVar()
 
-   new_customer_last_name = StringVar()
-   upd_customer_last_name = StringVar()
+   new_artist_country = StringVar()
+   upd_artist_country = StringVar()
 
-   new_customer_email = StringVar()
-   upd_customer_email = StringVar()
+   new_artist_active_years = StringVar()
+   upd_artist_active_years = StringVar()
 
-   new_customer_phone_number = StringVar()
-   upd_customer_phone_number = StringVar()
 
 #
 
-   lbl_get_customer = Label(customer_app, text="Показать customer по id", font=font)
-   entry_get_customer = Entry(customer_app, font=font, textvariable=get_id)
-   btn_get_customer = Button(customer_app, text='Получить', font=font, command=lambda: fun_get_customer(entry_get_customer.get()))
-   lbl_get_customer.grid(row=1, column=1)
-   entry_get_customer.grid(row=2, column=0)
-   btn_get_customer.grid(row=2, column=1)
+   lbl_get_artist = Label(artist_app, text="Показать artist по id", font=font)
+   entry_get_artist = Entry(artist_app, font=font, textvariable=get_id)
+   btn_get_artist = Button(artist_app, text='Получить', font=font, command=lambda: fun_get_artist(entry_get_artist.get()))
+   lbl_get_artist.grid(row=1, column=1)
+   entry_get_artist.grid(row=2, column=0)
+   btn_get_artist.grid(row=2, column=1)
 
 #
 
-   lbl_new_customer = Label(customer_app, text='Добавить нового customer', font=font)
+   lbl_new_artist = Label(artist_app, text='Добавить нового artist', font=font)
 
-   lbl_new_customer_first_name = Label(customer_app, text='Введите first_name нового customer', font=font)
-   entry_new_customer_first_name_data = Entry(customer_app, font=font, textvariable=new_customer_first_name)
+   lbl_new_artist_name = Label(artist_app, text='Введите name нового artist', font=font)
+   entry_new_artist_name_data = Entry(artist_app, font=font, textvariable=new_artist_name)
 
-   lbl_new_customer_last_name = Label(customer_app, text='Введите last_name нового customer', font=font)
-   entry_new_customer_last_name_data = Entry(customer_app, font=font, textvariable=new_customer_last_name)
+   lbl_new_artist_country= Label(artist_app, text='Введите country нового artist', font=font)
+   entry_new_artist_country_data = Entry(artist_app, font=font, textvariable=new_artist_country)
 
-   lbl_new_customer_email = Label(customer_app, text='Введите email нового customer', font=font)
-   entry_new_customer_email_data = Entry(customer_app, font=font, textvariable=new_customer_email)
-
-   lbl_new_customer_phone_number = Label(customer_app, text='Введите phone_number нового customer', font=font)
-   entry_new_customer_phone_number_data = Entry(customer_app, font=font, textvariable=new_customer_phone_number)
+   lbl_new_artist_active_years = Label(artist_app, text='Введите active_years нового artist', font=font)
+   entry_new_artist_active_years_data = Entry(artist_app, font=font, textvariable=new_artist_active_years)
 
 #
 
-   btn_new_customer = Button(customer_app, text='Создать', font=font, command=lambda: fun_new_customer(entry_new_customer_first_name_data.get(),entry_new_customer_last_name_data.get(),entry_new_customer_email_data.get(),entry_new_customer_phone_number_data.get()))
-   lbl_new_customer.grid(row=3, column=1)
+   btn_new_artist = Button(artist_app, text='Создать', font=font, command=lambda: fun_new_artist(entry_new_artist_name_data.get(),entry_new_artist_country_data.get(),entry_new_artist_active_years_data.get()))
+   lbl_new_artist.grid(row=3, column=1)
 
-   lbl_new_customer_first_name.grid(row=4, column=0)
-   entry_new_customer_first_name_data.grid(row=4, column=2)
+   lbl_new_artist_name.grid(row=4, column=0)
+   entry_new_artist_name_data.grid(row=4, column=2)
 
-   lbl_new_customer_last_name.grid(row=5, column=0)
-   entry_new_customer_last_name_data.grid(row=5, column=2)
+   lbl_new_artist_country.grid(row=5, column=0)
+   entry_new_artist_country_data.grid(row=5, column=2)
 
-   lbl_new_customer_email.grid(row=6, column=0)
-   entry_new_customer_email_data.grid(row=6, column=2)
+   lbl_new_artist_active_years.grid(row=6, column=0)
+   entry_new_artist_active_years_data.grid(row=6, column=2)
 
-   lbl_new_customer_phone_number.grid(row=7, column=0)
-   entry_new_customer_phone_number_data.grid(row=7, column=2)
 
-   btn_new_customer.grid(row=8, column=1)
+   btn_new_artist.grid(row=7, column=1)
 
 #
 
-   lbl_upd_customer = Label(customer_app, text='Обновить customer по id', font=font)
+   lbl_upd_artist = Label(artist_app, text='Обновить artist по id', font=font)
 
-   lbl_upd_customer_id = Label(customer_app, text='Введите customer_id', font=font)
-   entry_upd_customer = Entry(customer_app, font=font, textvariable=upd_id)
+   lbl_upd_artist_id = Label(artist_app, text='Введите artist_id', font=font)
+   entry_upd_artist = Entry(artist_app, font=font, textvariable=upd_id)
 
-   lbl_upd_customer_first_name = Label(customer_app, text='Введите first_name customer', font=font)
-   entry_upd_customer_first_name_data = Entry(customer_app, font=font, textvariable=upd_customer_first_name)
+   lbl_upd_artist_name = Label(artist_app, text='Введите name artist', font=font)
+   entry_upd_artist_name_data = Entry(artist_app, font=font, textvariable=upd_artist_name)
 
-   lbl_upd_customer_last_name = Label(customer_app, text='Введите last_name customer', font=font)
-   entry_upd_customer_last_name_data = Entry(customer_app, font=font, textvariable=upd_customer_last_name)
+   lbl_upd_artist_country = Label(artist_app, text='Введите country artist', font=font)
+   entry_upd_artist_country_data = Entry(artist_app, font=font, textvariable=upd_artist_country)
 
-   lbl_upd_customer_email = Label(customer_app, text='Введите email customer', font=font)
-   entry_upd_customer_email_data = Entry(customer_app, font=font, textvariable=upd_customer_email)
+   lbl_upd_artist_active_years = Label(artist_app, text='Введите active_years artist', font=font)
+   entry_upd_artist_active_years_data = Entry(artist_app, font=font, textvariable=upd_artist_active_years)
 
-   lbl_upd_customer_phone_number = Label(customer_app, text='Введите phone_number customer', font=font)
-   entry_upd_customer_phone_number_data = Entry(customer_app, font=font, textvariable=upd_customer_phone_number)
 
 #
 
-   btn_upd_customer = Button(customer_app, text='Обновить', font=font, command=lambda: fun_upd_customer(entry_upd_customer.get(),entry_upd_customer_first_name_data.get(),entry_upd_customer_last_name_data.get(),entry_upd_customer_email_data.get(),entry_upd_customer_phone_number_data.get()))
-   lbl_upd_customer.grid(row=9, column=1)
+   btn_upd_artist = Button(artist_app, text='Обновить', font=font, command=lambda: fun_upd_artist(entry_upd_artist.get(),entry_upd_artist_name_data.get(),entry_upd_artist_country_data.get(),entry_upd_artist_active_years_data.get()))
+   lbl_upd_artist.grid(row=8, column=1)
 
-   lbl_upd_customer_id.grid(row=10, column=0)
-   entry_upd_customer.grid(row=10, column=2)
+   lbl_upd_artist_id.grid(row=9, column=0)
+   entry_upd_artist.grid(row=9, column=2)
 
-   lbl_upd_customer_first_name.grid(row=11, column=0)
-   entry_upd_customer_first_name_data.grid(row=11, column=2)
+   lbl_upd_artist_name.grid(row=10, column=0)
+   entry_upd_artist_name_data.grid(row=10, column=2)
 
-   lbl_upd_customer_last_name.grid(row=12, column=0)
-   entry_upd_customer_last_name_data.grid(row=12, column=2)
+   lbl_upd_artist_country.grid(row=11, column=0)
+   entry_upd_artist_country_data.grid(row=11, column=2)
 
-   lbl_upd_customer_email.grid(row=13, column=0)
-   entry_upd_customer_email_data.grid(row=13, column=2)
+   lbl_upd_artist_active_years.grid(row=12, column=0)
+   entry_upd_artist_active_years_data.grid(row=12, column=2)
 
-   lbl_upd_customer_phone_number.grid(row=14, column=0)
-   entry_upd_customer_phone_number_data.grid(row=14, column=2)
 
-   btn_upd_customer.grid(row=15, column=1)
+   btn_upd_artist.grid(row=13, column=1)
 
 #
 
-   lbl_del_customer = Label(customer_app, text='Удалить customer по id', font=font)
-   entry_del_customer = Entry(customer_app, font=font, textvariable=del_id)
-   btn_del_customer = Button(customer_app, text='Удалить', font=font, command=lambda: fun_del_customer(entry_del_customer.get()))
+   lbl_del_artist = Label(artist_app, text='Удалить artist по id', font=font)
+   entry_del_artist = Entry(artist_app, font=font, textvariable=del_id)
+   btn_del_artist = Button(artist_app, text='Удалить', font=font, command=lambda: fun_del_artist(entry_del_artist.get()))
 
-   lbl_del_customer.grid(row=16, column=1)
-   entry_del_customer.grid(row=17, column=0)
-   btn_del_customer.grid(row=17, column=1)
+   lbl_del_artist.grid(row=14, column=1)
+   entry_del_artist.grid(row=15, column=0)
+   btn_del_artist.grid(row=15, column=1)
 
 
 #
    global lb2_response
-   lb1_response = Label(customer_app, text='Полученный ответ', font=font)
-   lb2_response = Label(customer_app, text='', font=font)
+   lb1_response = Label(artist_app, text='Полученный ответ', font=font)
+   lb2_response = Label(artist_app, text='', font=font)
 
-   lb1_response.grid(row=18, column=1)
-   lb2_response.grid(row=19, column=1)
+   lb1_response.grid(row=16, column=1)
+   lb2_response.grid(row=17, column=1)
 
 def get_response(s):
    response = s
@@ -134,24 +123,24 @@ def get_response(s):
 
 #
 
-def fun_get_customer(customer_id):
-   r = requests.get(f'http://127.0.0.1:8000/customers/{customer_id}')
+def fun_get_artist(artist_id):
+   r = requests.get(f'http://127.0.0.1:8000/artists/{artist_id}')
    answer = r.json()
    get_response(answer)
 
-def fun_new_customer(first_name,last_name,email,phone_number):
-   data = f'{{ "first_name": "{first_name}", "last_name": "{last_name}", "email": "{email}", "phone_number": "{phone_number}"}}'
-   r = requests.post(f'http://127.0.0.1:8000/customers/',data=data)
+def fun_new_artist(name,country,active_years):
+   data = f'{{ "name": "{name}", "country": "{country}", "active_years": "{active_years}"}}'
+   r = requests.post(f'http://127.0.0.1:8000/artists/',data=data)
    answer = r.json()
    get_response(answer)
 
-def fun_upd_customer(customer_id,first_name,last_name,email,phone_number):
-   data = f'{{ "first_name": "{first_name}", "last_name": "{last_name}", "email": "{email}", "phone_number": "{phone_number}" }}'
-   r = requests.put(f'http://127.0.0.1:8000/customers/{customer_id}',data=data)
+def fun_upd_artist(artist_id,name,country,active_years):
+   data = f'{{ "name": "{name}", "country": "{country}", "active_years": "{active_years}"}}'
+   r = requests.put(f'http://127.0.0.1:8000/artists/{artist_id}',data=data)
    answer = r.json()
    get_response(answer)
 
-def fun_del_customer(customer_id):
-   r = requests.delete(f'http://127.0.0.1:8000/customers/{customer_id}')
+def fun_del_artist(artist_id):
+   r = requests.delete(f'http://127.0.0.1:8000/artists/{artist_id}')
    answer = r.json()
    get_response(answer)

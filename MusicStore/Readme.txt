@@ -6,3 +6,7 @@ pip install uvicorn
 
 Для запуска GUI:
 Открыть src/client и запустить mainwindow.py
+
+Из UI сделано
+
+Artists и Customers + регистрация
